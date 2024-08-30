@@ -17,6 +17,43 @@ public class NotaFiscalService {
     @Autowired
     private NotaFiscalRepository notaFiscalRepository;
 
+    public List<NotaFiscalDTO> findAllByDescontoInexists() {
+        return notaFiscalRepository.findAllByDescontoInexists().stream()
+                .map(NotaFiscalDTO::new)
+                .collect(Collectors.toList());
+    }
+
+    public List<NotaFiscalDTO> findAllByDescontoExists() {
+        return notaFiscalRepository.findAllByDescontoExists().stream()
+                .map(NotaFiscalDTO::new)
+                .collect(Collectors.toList());
+    }
+
+    public List<NotaFiscalDTO> findAllByOrderByValorUnit() {
+        return notaFiscalRepository.findAllByOrderByValorUnitDesc().stream()
+                .map(NotaFiscalDTO::new)
+                .collect(Collectors.toList());
+    }
+
+    public List<NotaFiscalDTO> findMaxProdInNf() {
+        return notaFiscalRepository.findMaxProdInNf().stream()
+                .map(NotaFiscalDTO::new)
+                .collect(Collectors.toList());
+
+    }
+
+    public List<NotaFiscalDTO> findQuantGreaterThenTen()  {
+        return notaFiscalRepository.findByQuantidadeGreaterThan(10).stream()
+                .map(NotaFiscalDTO::new)
+                .collect(Collectors.toList());
+    }
+
+    public List<NotaFiscalDTO> findNotasFiscaisComTotalMaiorQue500() {
+        return notaFiscalRepository.findNotasFiscaisComTotalMaiorQue500().stream()
+            .map(NotaFiscalDTO::new)
+            .collect(Collectors.toList());
+    }
+
     public List<NotaFiscalDTO> findAll() {
         return notaFiscalRepository.findAll().stream()
                 .map(NotaFiscalDTO::new)

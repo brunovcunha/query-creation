@@ -10,6 +10,7 @@ import com.iftm.query_creation.service.NotaFiscalService;
 import java.util.List;
 import java.util.Optional;
 
+
 @RestController
 @RequestMapping("/api/nota-fiscal")
 public class NotaFiscalController {
@@ -20,6 +21,36 @@ public class NotaFiscalController {
     @GetMapping
     public List<NotaFiscalDTO> getAllNotaFiscais() {
         return notaFiscalService.findAll();
+    }
+
+    @GetMapping("/sem-desconto")
+    public List<NotaFiscalDTO> findAllByDescontoInexists() {
+        return notaFiscalService.findAllByDescontoInexists();
+    }
+
+    @GetMapping("/com-desconto")
+    public List<NotaFiscalDTO> findAllByDescontoExists() {
+        return notaFiscalService.findAllByDescontoExists();
+    }
+
+    @GetMapping("/valor-unitario")
+    public List<NotaFiscalDTO> findAllOrderByValorUnit() {
+        return notaFiscalService.findAllByOrderByValorUnit();
+    }
+    
+    @GetMapping("/produto-mais-vendido")
+    public List<NotaFiscalDTO> findMaxProdInNf() {
+        return notaFiscalService.findMaxProdInNf();
+    }
+
+    @GetMapping("/produto-maior-que-10")
+    public List<NotaFiscalDTO> findQuantGreaterThenTen() {
+        return notaFiscalService.findQuantGreaterThenTen();
+    }
+
+    @GetMapping("/notas-valor-maior-que-500")
+    public List<NotaFiscalDTO> findNotasFiscaisComTotalMaiorQue500() {
+        return notaFiscalService.findNotasFiscaisComTotalMaiorQue500();
     }
 
     @GetMapping("/{id}")
